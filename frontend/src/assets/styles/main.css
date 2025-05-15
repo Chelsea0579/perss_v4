@@ -1,0 +1,263 @@
+/* 全局样式 */
+
+:root {
+  --primary-color: #1976d2;
+  --secondary-color: #424242;
+  --accent-color: #82b1ff;
+  --error-color: #ff5252;
+  --info-color: #2196f3;
+  --success-color: #4caf50;
+  --warning-color: #ffc107;
+  --background-color: #f5f5f5;
+  --card-color: #ffffff;
+  --text-primary: rgba(0, 0, 0, 0.87);
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --border-color: #e0e0e0;
+}
+
+/* 通用样式 */
+body {
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* 文本样式 */
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-success {
+  color: var(--success-color);
+}
+
+.text-error {
+  color: var(--error-color);
+}
+
+.text-warning {
+  color: var(--warning-color);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* 间距 */
+.mb-2 {
+  margin-bottom: 8px;
+}
+
+.mb-4 {
+  margin-bottom: 16px;
+}
+
+.my-4 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.py-4 {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.pa-4 {
+  padding: 16px;
+}
+
+/* 阅读内容样式 */
+.reading-content {
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-line;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* 问题样式 */
+.question-item {
+  border-left: 3px solid var(--border-color);
+  padding-left: 16px;
+  margin-bottom: 24px;
+}
+
+.question-header {
+  margin-bottom: 8px;
+}
+
+/* 策略内容样式 */
+.strategy-content {
+  background-color: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* 聊天界面样式 */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background-color: #f8f9fa;
+}
+
+.message {
+  margin-bottom: 16px;
+  max-width: 80%;
+}
+
+.user-message {
+  margin-left: auto;
+}
+
+.assistant-message {
+  margin-right: auto;
+}
+
+.message-content {
+  padding: 12px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.user-message .message-content {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.assistant-message .message-content {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.message-time {
+  font-size: 0.7rem;
+  color: #757575;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.chat-input {
+  display: flex;
+  padding: 8px;
+  background-color: #fff;
+  border-top: 1px solid var(--border-color);
+}
+
+.chat-textarea {
+  flex: 1;
+}
+
+.send-button {
+  margin-left: 8px;
+  align-self: flex-end;
+}
+
+/* 分析内容样式 */
+.analysis-content {
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* 总结内容样式 */
+.summary-content {
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* 学习总结卡片样式 */
+.score-card {
+  height: 100%;
+}
+
+/* 表格样式 */
+.v-table {
+  border: 1px solid var(--border-color);
+}
+
+.v-table th, .v-table td {
+  padding: 8px;
+  vertical-align: middle;
+}
+
+/* Markdown 渲染样式 */
+.markdown-content h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--secondary-color);
+}
+
+.markdown-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.markdown-content ul {
+  padding-left: 1.5rem;
+}
+
+.markdown-content li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content p {
+  margin-bottom: 1rem;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}

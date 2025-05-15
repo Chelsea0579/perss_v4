@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户画像测试表单</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #1976D2;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #1976D2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1565C0;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>用户画像测试表单</h1>
+    <p>这个表单用于测试用户画像API的功能。</p>
+    
+    <form id="userForm">
+        <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="grade">年级</label>
+            <input type="text" id="grade" name="grade">
+        </div>
+        
+        <div class="form-group">
+            <label for="major">专业</label>
+            <input type="text" id="major" name="major">
+        </div>
+        
+        <div class="form-group">
+            <label for="gender">性别</label>
+            <select id="gender" name="gender">
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="cet4_taken">是否参加过四级考试</label>
+            <select id="cet4_taken" name="cet4_taken">
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="cet4_score">四级总分</label>
+            <input type="text" id="cet4_score" name="cet4_score">
+        </div>
+        
+        <div class="form-group">
+            <label for="cet4_reading_score">四级阅读分数</label>
+            <input type="text" id="cet4_reading_score" name="cet4_reading_score">
+        </div>
+        
+        <button type="button" onclick="submitForm()">提交用户画像</button>
+    </form>
+    
+    <h2>结果：</h2>
+    <pre id="result">等待提交...</pre>
+    
+    <h2>请求URL选项：</h2>
+    <div class="form-group">
+        <label for="urlOption">选择请求URL</label>
+        <select id="urlOption">
+            <option value="http://localhost:8000/api/user-profile">不带斜杠: /api/user-profile</option>
+            <option value="http://localhost:8000/api/user-profile/">带斜杠: /api/user-profile/</option>
+        </select>
+    </div>
+    
+    <script>
+        async function submitForm() {
+            const formData = {
+                name: document.getElementById('name').value,
+                grade: document.getElementById('grade').value,
+                major: document.getElementById('major').value,
+                gender: document.getElementById('gender').value,
+                cet4_taken: document.getElementById('cet4_taken').value,
+                cet4_score: document.getElementById('cet4_score').value,
+                cet4_reading_score: document.getElementById('cet4_reading_score').value,
+                cet6_taken: "否",
+                cet6_score: "",
+                cet6_reading_score: "",
+                other_scores: "",
+                exam_name: "",
+                total_score: "",
+                reading_score: ""
+            };
+            
+            const resultEl = document.getElementById('result');
+            const apiUrl = document.getElementById('urlOption').value;
+            
+            resultEl.innerText = `正在发送请求到 ${apiUrl}...`;
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const status = response.status;
+                let data;
+                
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    data = await response.text();
+                }
+                
+                resultEl.innerText = `状态码: ${status}\n\n${typeof data === 'object' ? JSON.stringify(data, null, 2) : data}`;
+                
+                // 显示详细信息
+                console.log('请求详情:');
+                console.log('URL:', apiUrl);
+                console.log('请求体:', formData);
+                console.log('响应状态:', status);
+                console.log('响应数据:', data);
+                
+            } catch (error) {
+                resultEl.innerText = `错误: ${error.message}`;
+                console.error('请求出错:', error);
+            }
+        }
+    </script>
+</body>
+</html> 
