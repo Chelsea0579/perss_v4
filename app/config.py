@@ -6,7 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # API 配置
-DEEPSEEK_API_KEY = "sk-5d6bf8a969654698980926f4446d33f1"
+DEEPSEEK_API_KEY = "put your API here"
 DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
 
 # 数据库配置
